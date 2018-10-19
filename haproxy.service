@@ -1,0 +1,12 @@
+[Unit]
+Description=HAProxy
+After=network.target
+
+[Service]
+User=root
+Type=forking
+ExecStart=/usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/conf/haproxy.cfg
+ExecStop=/usr/bin/kill `/usr/bin/cat /usr/local/haproxy/haproxy.pid`
+
+[Install]
+WantedBy=multi-user.target
